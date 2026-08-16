@@ -17,8 +17,7 @@
     const numberOfMovies = document.querySelector('#numberOfMovies').value;
     //fetching user input
     const searchMovie = document.querySelector('#searchMovie').value;
-    document.querySelector('#searchMovie').value = ""
-;    //api key
+    document.querySelector('#searchMovie').value = "";    //api key
     const requestURL = `https://www.omdbapi.com/?s=${searchMovie}&apikey=e60193cc`;
     //fetching response 
     fetch(requestURL).then(function (response) {
