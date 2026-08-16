@@ -1,0 +1,37 @@
+//drop down
+  const numberOfMovies = document.querySelector('#numberOfMovies').value;
+  const movieNumbers = [3, 5, 10];
+  for (let i = 0; i < movieNumbers.length; i++) {
+    const option = document.createElement("option");
+    option.value = movieNumbers[i];
+    option.textContent = movieNumbers[i];
+    document.getElementById("numberOfMovies").appendChild(option);
+  }
+
+  function fetchData() {
+    //fetching number of movies
+    const numberOfMovies = document.querySelector('#numberOfMovies').value;
+    //fetching user input
+    const searchMovie = document.querySelector('#searchMovie').value;
+    //api key
+    const requestURL = `https://www.omdbapi.com/?s=${searchMovie}&apikey=e60193cc`;
+    //fetching response 
+    fetch(requestURL).then(function (response) {
+      //check if data is okay
+      if (!response.ok) {
+        throw new Error("not found");
+      }
+      return response.json();
+      //data
+    }).then(function (data) {
+      //local storage
+      // localStorage.setItem("movieData",JSON.stringify(data));
+      // window.open("movieCards.html","_blank");
+      const movies = data.Search.slice(0, numberOfMovies);
+      console.log(movies);
+    }).catch(function (error) {
+      console.log(error);
+    });
+  }
+  const explore = document.querySelector('#explore');
+  explore.addEventListener('click', fetchData);
