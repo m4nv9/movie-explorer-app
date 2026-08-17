@@ -15,6 +15,7 @@ const movieDetails = document.querySelector('#movieDetails');
 function fetchData() {
   //clearing previous movie cards
   movieCardContainer.innerHTML = "";
+  movieDetails.innerHTML = "";
   //fetching number of movies
   const numberOfMovies = document.querySelector('#numberOfMovies').value;
   //fetching user input
@@ -36,6 +37,7 @@ function fetchData() {
       const movieCard = document.createElement("div");
       //dynamic movie card
       movieCard.addEventListener('click', function () {
+        movieDetails.innerHTML = "";
         //fetching imdbID
         const detailsURL = `https://www.omdbapi.com/?i=${movie.imdbID}&apikey=e60193cc`;
         fetch(detailsURL)
@@ -68,7 +70,6 @@ function fetchData() {
             const rating = document.createElement("p");
             rating.textContent = `IMDB Rating: ${data.Ratings[0].Value}`;
             detailCard.appendChild(rating);
-
           })
       });
       movieCardContainer.appendChild(movieCard);
